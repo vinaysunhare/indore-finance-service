@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indore Financial Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #003366; /* Set text color to dark blue */
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #f1c40f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('{{ url_for("static", filename="images/indore_finance.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            color: #003366; /* Set text color to dark blue */
+            text-align: center;
+            padding: 4rem 2rem;
+            min-height: 300px;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero .cta-button {
+            padding: 12px 24px;
+            background-color: #16a085;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .hero .cta-button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Services Section */
+        section#services {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        .services .service {
+            background: #ffffff;
+            color: #003366; /* Set text color to dark blue */
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .services .service:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        .services .service h3 {
+            margin-bottom: 1rem;
+        }
+        .services .service p {
+            color: #000000;
+            font-size: 1rem;
+        }
+
+        /* About Vinay Section */
+        #about-vinay {
+            background-color: #ffffff;
+            color: #003366; /* Set text color to dark blue */
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        #about-vinay h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        #about-vinay p {
+            font-size: 1rem;
+            color: #000000;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        #about-vinay .social-icons {
+            margin-top: 2rem;
+        }
+        #about-vinay .social-icons a {
+            font-size: 1.8rem;
+            color: #003366;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        #about-vinay .social-icons a:hover {
+            color: #16a085;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: #ffffff;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+        .testimonials h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        .testimonial {
+            max-width: 900px;
+            margin: 0 auto 2rem auto;
+            background-color: #f4f4f9;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial p {
+            font-size: 1rem;
+            font-style: italic;
+            color: #000000;
+            margin-bottom: 0.5rem;
+        }
+        .testimonial footer {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            margin-top: 1rem;
+            font-size: 1.1rem;
+        }
+        footer .contact-info a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        footer .contact-info a:hover {
+            color: #16a085;
+        }
+        footer .social-icons {
+            margin-top: 2rem;
+        }
+        footer .social-icons a {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        footer .social-icons a:hover {
+            color: #16a085;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            nav a {
+                font-size: 0.9rem;
+            }
+            .services {
+                grid-template-columns: 1fr 1fr;
+            }
+            .services .service {
+                padding: 1.2rem;
+            }
+            #about-vinay h2 {
+                font-size: 1.8rem;
+            }
+            #about-vinay p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div><a href="{{ url_for('main.home') }}" style="font-size: 1.5rem;">Indore Financial Services</a></div>
+            <div>
+                <a href="{{ url_for('main.loan_calculator') }}">Loan Calculator</a>
+                <a href="{{ url_for('main.investment_tracker') }}">Investment Tracker</a>
+                <a href="{{ url_for('main.contact') }}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Your Path to Financial Freedom</h1>
+        <p>At Indore Financial Services, we specialize in providing personalized financial solutions that cater to your unique needs. With over five years of experience, our expert team offers reliable and transparent services designed to help you secure your financial future. Whether you’re seeking personal loans, business financing, or investment advice, we are committed to guiding you every step of the way. Our focus is on delivering customized strategies that align with your financial goals while maintaining integrity and professionalism. Trust us to support your journey towards financial stability, growth, and success with tailored, expert solutions.</p>
+        <a href="#services" class="cta-button">Explore Our Services</a>
+    </div>
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service">
+                <h3>Personal Loans</h3>
+                <p>We offer flexible and affordable personal loans to help you achieve your financial goals.</p>
+            </div>
+            <div class="service">
+                <h3>Business Financing</h3>
+                <p>Get the financing you need to grow and expand your business with tailored solutions.</p>
+            </div>
+            <div class="service">
+                <h3>Investment Planning</h3>
+                <p>Our expert advisors can help you create a personalized investment plan for your future.</p>
+            </div>
+            <div class="service">
+                <h3>Debt Management</h3>
+                <p>We assist you in managing and reducing debt effectively, ensuring a path to financial freedom.</p>
+            </div>
+            <div class="service">
+                <h3>Tax Planning</h3>
+                <p>Our expert team helps you optimize your tax strategy, minimizing liabilities and maximizing savings.</p>
+            </div>
+            <div class="service">
+                <h3>Retirement Planning</h3>
+                <p>Plan for a secure future with our retirement planning services, ensuring you have enough funds for your golden years.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Vinay Section -->
+    <section id="about-vinay">
+        <h2>About Vinay Sunhare</h2>
+        <p>Vinay Sunhare offers expert finance services to help individuals and businesses achieve their financial goals. With over five years of experience in the industry, he provides personalized solutions for investment tracking, portfolio management, financial planning, and risk management. Whether you're looking to optimize your wealth, grow investments, or plan for the future, Vinay’s services are tailored to meet your unique needs. His expertise in financial markets and investment strategies ensures you make informed decisions, reduce risks, and maximize growth potential. Vinay is committed to helping clients navigate the complexities of finance and secure their financial future effectively.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/vinay.sunhare.1" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/vinay-sunhare" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/vinay_sunhare" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonial">
+            <p>"Indore Financial Services helped me secure a loan quickly and easily. Their team guided me through every step of the process, and I couldn't be happier with the service!"</p>
+            <footer>- John Doe, Entrepreneur</footer>
+        </div>
+        <div class="testimonial">
+            <p>"I was looking for investment advice, and Vinay's expertise made all the difference. I feel confident in my investment strategy now!"</p>
+            <footer>- Jane Smith, Investor</footer>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Indore Financial Services | All Rights Reserved</p>
+        <div class="contact-info">
+            <p>Contact us: <a href="mailto:vinaysunhare25@gmail.com">vinaysunhare25@gmail.com</a> | Phone: +91 7879222000</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/vinay.sunhare.1" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/vinay-sunhare" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/vinay_sunhare" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>

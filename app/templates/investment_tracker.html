@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Tracker - Indore Financial Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #f1c40f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('{{ url_for("static", filename="images/indore_finance.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            color: #003366;
+            text-align: center;
+            padding: 6rem 2rem;
+            min-height: 50px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero .cta-button {
+            padding: 15px 30px;
+            background-color: #16a085;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .hero .cta-button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Investment Tracker Section */
+        section#investment-tracker {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .investment-tracker-form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .investment-tracker-form input,
+        .investment-tracker-form select,
+        .investment-tracker-form button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .investment-tracker-form button {
+            background-color: #16a085;
+            color: white;
+            cursor: pointer;
+        }
+        .investment-tracker-form button:hover {
+            background-color: #1abc9c;
+        }
+
+        .investment-summary {
+            background-color: #ffffff;
+            padding: 2rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .investment-summary h3 {
+            font-size: 1.5rem;
+            color: #003366;
+        }
+        .investment-summary ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.1rem;
+        }
+        .investment-summary li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        footer .social-icons {
+            margin-top: 2rem;
+        }
+        footer .social-icons a {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        footer .social-icons a:hover {
+            color: #16a085;
+        }
+
+        /* Update for email link color */
+        footer a {
+            color: #ffffff; /* Set the email link color to white */
+            text-decoration: none; /* Remove the underline */
+        }
+
+        footer a:hover {
+            color: #16a085; /* Change the color when hovering */
+            text-decoration: underline; /* Add an underline on hover */
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            nav a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div><a href="{{ url_for('main.home') }}" style="font-size: 1.5rem;">Indore Financial Services</a></div>
+            <div>
+                <a href="{{ url_for('main.loan_calculator') }}">Loan Calculator</a>
+                <a href="{{ url_for('main.investment_tracker') }}">Investment Tracker</a>
+                <a href="{{ url_for('main.contact') }}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Investment Tracker</h1>
+        <p>Our investment tracker is designed to help you keep track of your financial portfolio, monitor the performance of your investments, and stay on top of your financial goals. Whether you're investing in stocks, bonds, real estate, or mutual funds, this tool allows you to organize your assets and track their progress. By entering key details of each investment, you can gain valuable insights into your returns, make informed decisions, and adjust your strategy to meet your long-term goals.</p>
+        <a href="#investment-tracker" class="cta-button">Start Tracking Now</a>
+    </div>
+
+    <!-- Investment Tracker Section -->
+    <section id="investment-tracker">
+        <h2>Track Your Investments</h2>
+        <p>Stay organized and gain better insights into your investments with our easy-to-use tracker. Fill in the details of your investments to get real-time insights into your portfolio's performance.</p>
+        <div class="investment-tracker-form">
+            <form action="#" method="POST">
+                <label for="investment-name">Investment Name</label>
+                <input type="text" id="investment-name" name="investment-name" required placeholder="Enter investment name">
+
+                <label for="investment-type">Investment Type</label>
+                <select id="investment-type" name="investment-type" required>
+                    <option value="stocks">Stocks</option>
+                    <option value="bonds">Bonds</option>
+                    <option value="real-estate">Real Estate</option>
+                    <option value="mutual-funds">Mutual Funds</option>
+                    <option value="cryptocurrency">Cryptocurrency</option>
+                </select>
+
+                <label for="investment-amount">Investment Amount (₹)</label>
+                <input type="number" id="investment-amount" name="investment-amount" required placeholder="Enter investment amount">
+
+                <label for="investment-date">Investment Date</label>
+                <input type="date" id="investment-date" name="investment-date" required>
+
+                <label for="current-value">Current Value (₹)</label>
+                <input type="number" id="current-value" name="current-value" required placeholder="Enter current value of the investment">
+
+                <button type="submit">Track Investment</button>
+            </form>
+        </div>
+
+        <div class="investment-summary">
+            <h3>Investment Summary</h3>
+            <p>Here's a summary of your current investments:</p>
+            <ul>
+                <li><strong>Stocks:</strong> ₹50,000 invested, ₹55,000 current value</li>
+                <li><strong>Bonds:</strong> ₹30,000 invested, ₹32,500 current value</li>
+                <li><strong>Real Estate:</strong> ₹200,000 invested, ₹220,000 current value</li>
+                <li><strong>Mutual Funds:</strong> ₹40,000 invested, ₹42,000 current value</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Indore Financial Services | All Rights Reserved</p>
+        <div class="contact-info">
+            <p>Contact us: <a href="mailto:vinaysunhare25@gmail.com">vinaysunhare25@gmail.com</a> | Phone: +91 7879222000</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/vinay.sunhare.1" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/vinay-sunhare" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/vinay_sunhare" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

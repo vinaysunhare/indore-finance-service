@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator - Indore Financial Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #000000;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+            color: #f1c40f;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('{{ url_for("static", filename="images/indore_finance.jpg") }}');
+            background-size: cover;
+            background-position: center;
+            color: #003366;
+            text-align: center;
+            padding: 6rem 2rem;
+            min-height: 50px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .hero .cta-button {
+            padding: 15px 30px;
+            background-color: #16a085;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .hero .cta-button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Loan Calculator Section */
+        section#loan-calculator {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .loan-calculator-form {
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .loan-calculator-form input,
+        .loan-calculator-form select,
+        .loan-calculator-form button {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .loan-calculator-form button {
+            background-color: #16a085;
+            color: white;
+            cursor: pointer;
+        }
+        .loan-calculator-form button:hover {
+            background-color: #1abc9c;
+        }
+
+        /* Additional Sections */
+        .benefits,
+        .how-it-works,
+        .testimonials {
+            margin-top: 3rem;
+        }
+
+        .benefits h2,
+        .how-it-works h2,
+        .testimonials h2 {
+            font-size: 2rem;
+            color: #003366;
+        }
+
+        .benefits p,
+        .how-it-works p,
+        .testimonials p {
+            font-size: 1.2rem;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .testimonials .testimonial {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial .author {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+            font-size: 1rem;
+        }
+        footer p {
+            margin: 0;
+        }
+        footer .contact-info {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        footer .social-icons {
+            margin-top: 2rem;
+        }
+        footer .social-icons a {
+            font-size: 2rem;
+            color: #ffffff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        footer .social-icons a:hover {
+            color: #16a085;
+        }
+
+        /* Mobile Responsiveness */
+        @media screen and (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            nav a {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div><a href="{{ url_for('main.home') }}" style="font-size: 1.5rem;">Indore Financial Services</a></div>
+            <div>
+                <a href="{{ url_for('main.loan_calculator') }}">Loan Calculator</a>
+                <a href="{{ url_for('main.investment_tracker') }}">Investment Tracker</a>
+                <a href="{{ url_for('main.contact') }}">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Loan Calculator</h1>
+        <p>A loan calculator is a powerful tool designed to help individuals and businesses determine the total cost of a loan, including monthly payments, interest rates, and overall repayment amounts. By inputting key information such as the loan amount, interest rate, and loan term, users can quickly calculate how much they will need to pay each month and understand the total interest they will be charged over the life of the loan. This can be especially helpful for budgeting purposes, as it allows borrowers to see if a loan is affordable based on their current financial situation. Additionally, loan calculators can help in comparing different loan offers, aiding in the decision-making process by showcasing how varying interest rates and loan terms affect monthly payments and the total cost. Whether you're taking out a personal loan, a mortgage, or a car loan, using a loan calculator can provide clarity and help you make informed financial decisions.</p>
+    </div>
+
+    <!-- Loan Calculator Section -->
+    <section id="loan-calculator">
+        <h2>Loan Calculator</h2>
+        <div class="loan-calculator-form">
+            <form action="#" method="POST">
+                <label for="loan-amount">Loan Amount (₹)</label>
+                <input type="number" id="loan-amount" name="loan-amount" required placeholder="Enter loan amount">
+
+                <label for="interest-rate">Interest Rate (%)</label>
+                <input type="number" id="interest-rate" name="interest-rate" required placeholder="Enter interest rate">
+
+                <label for="loan-term">Loan Term (Years)</label>
+                <input type="number" id="loan-term" name="loan-term" required placeholder="Enter loan term in years">
+
+                <button type="submit">Calculate</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Loan Benefits Section -->
+    <section class="benefits">
+        <h2>Benefits of Using the Loan Calculator</h2>
+        <p>Our Loan Calculator offers numerous benefits:</p>
+        <ul>
+            <li><strong>Easy to Use:</strong> Simply enter the loan details, and our calculator does the rest.</li>
+            <li><strong>Accurate Results:</strong> Get precise monthly payment amounts and total loan costs.</li>
+            <li><strong>Budget Planning:</strong> Understand your financial obligations before committing to a loan.</li>
+            <li><strong>Comparative Analysis:</strong> Compare different loans and terms to find the best fit for your needs.</li>
+        </ul>
+    </section>
+
+    <!-- How the Calculator Works Section -->
+    <section class="how-it-works">
+        <h2>How the Loan Calculator Works</h2>
+        <p>Our Loan Calculator works by utilizing a simple mathematical formula to calculate your loan repayment schedule:</p>
+        <p>The formula is: <em>Monthly Payment = P[r(1 + r)^n] / [(1 + r)^n – 1]</em></p>
+        <p>Where:</p>
+        <ul>
+            <li><strong>P</strong> = Loan Amount</li>
+            <li><strong>r</strong> = Monthly Interest Rate</li>
+            <li><strong>n</strong> = Number of Payments (loan term in months)</li>
+        </ul>
+        <p>By inputting the loan amount, interest rate, and term, the calculator will generate an accurate monthly repayment amount and the total interest paid over the life of the loan.</p>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial">
+            <p>"This loan calculator helped me plan my finances better. I was able to compare different loan options and choose the one that was most affordable. Highly recommend!"</p>
+            <p class="author">- Rajesh Verma, Indore</p>
+        </div>
+        <div class="testimonial">
+            <p>"A simple yet effective tool! It provided me with accurate results and gave me clarity on my loan repayments. It made my decision-making process so much easier."</p>
+            <p class="author">- Priya Sharma, Indore</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Indore Financial Services | All Rights Reserved</p>
+        <div class="contact-info">
+            <p>Contact us: <a href="mailto:vinaysunhare25@gmail.com">vinaysunhare25@gmail.com</a> | Phone: +91 7879222000</p>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/vinay.sunhare.1" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.linkedin.com/in/vinay-sunhare" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://x.com/vinay_sunhare" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+    </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+</body>
+</html>
