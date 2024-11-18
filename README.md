@@ -1,6 +1,6 @@
 # Indore Finance Service
 
-![indorefinance-home1](https://github.com/user-attachments/assets/38a7a54e-952c-4119-a594-d45b26266c09)
+![indore-finance-home1](https://github.com/user-attachments/assets/3a9aefcf-bd3b-4469-86d3-4ec89e86a04a)
 ![indorefinancehome2](https://github.com/user-attachments/assets/e3966091-5a8e-42e6-b23d-53d9ea6200f7)
 ![indorefinancehome3](https://github.com/user-attachments/assets/52a4d646-1389-4947-b555-9f4e5fc4a7c9)
 ![indorefinanceloan1](https://github.com/user-attachments/assets/9f293358-a792-460e-911f-bacf587941d6)
