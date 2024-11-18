@@ -1,13 +1,14 @@
 # Indore Finance Service
 
-<img src="indorefinance-home1.png" alt="indore-finance-home1">
-<img src="/indorefinancehome2.png" alt="indore-finance-home2">
-<img src="/indorefinancehome3.png" alt="indore-finance-home2">
-<img src="/indorefinanceloan1.png" alt="loan">
-<img src="/indorefinanceinvestment1.png" alt="indore-finance-investment">
-<img src="/indorefinanceinvestmenttracker2.png" alt="indore-finance-investment2">
-<img src="/indorefinancecontact1.png" alt="indore-finance-contact1">
-<img src="/indorefinancecontact2.png" alt="indore-finance-contact2">
+![indorefinance-home1](https://github.com/user-attachments/assets/38a7a54e-952c-4119-a594-d45b26266c09)
+![indorefinancehome2](https://github.com/user-attachments/assets/e3966091-5a8e-42e6-b23d-53d9ea6200f7)
+![indorefinancehome3](https://github.com/user-attachments/assets/52a4d646-1389-4947-b555-9f4e5fc4a7c9)
+![indorefinanceloan1](https://github.com/user-attachments/assets/9f293358-a792-460e-911f-bacf587941d6)
+![indorefinanceinvestment1](https://github.com/user-attachments/assets/18ed51ef-3dd1-43c3-b7d9-787f977c5096)
+![indorefinanceinvestmenttracker2](https://github.com/user-attachments/assets/dd12f506-12e6-454c-804c-45ccac128812)
+![indorefinancecontact1](https://github.com/user-attachments/assets/e3cf9968-2e94-4e22-aa1a-dea24731b541)
+![indorefinancecontact2](https://github.com/user-attachments/assets/78d50385-3008-438a-b7fa-0fbf965e3693)
+
 
 **Indore Finance Service** 
 
