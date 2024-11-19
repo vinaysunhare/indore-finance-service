@@ -29,7 +29,7 @@ pipeline {
                     // Login to Docker Hub
                     sh 'echo $vinay2503 | docker login -u $vinaysunhare --password-stdin'
                     // Push the Docker image
-                    sh 'docker push $indore-finance-service'
+                    sh 'docker push $vinaysunhare/indore-finance-service:latest'
                 }
             }
         }
