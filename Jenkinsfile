@@ -25,7 +25,7 @@ pipeline {
                 script {
                     // Use Jenkins environment variables for Docker Hub credentials
                     sh """
-                        echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin
+                        echo $DOCKER_CREDENTIALS_PSW | docker login -u $vinaysunhare --password-vinay2503
                         docker push indore-finance-service
                     """
                 }
