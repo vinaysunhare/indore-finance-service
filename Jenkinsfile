@@ -1,54 +1,41 @@
 pipeline {
     agent any
-
+    
     environment {
-        DOCKER_IMAGE = 'vinaysunhare/indore-finance-service:latest'
-        DOCKER_CLI_EXPERIMENTAL = 'enabled'
+        DOCKER_CREDENTIALS = credentials('docker-hub-credentials') // Use your Jenkins credentials ID here
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                // Checkout the latest code from GitHub
                 git 'https://github.com/vinaysunhare/indore-finance-service.git'
             }
         }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
-                    // Build Docker image
                     sh 'docker build -t indore-finance-service .'
                 }
             }
         }
-        
+
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    // Login to Docker Hub
-                    sh 'echo $vinay2503 | docker login -u $vinaysunhare --password-stdin'
-                    // Push the Docker image
-                    sh 'docker push $vinaysunhare/indore-finance-service:latest'
+                    // Use Jenkins environment variables for Docker Hub credentials
+                    sh """
+                        echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin
+                        docker push indore-finance-service
+                    """
                 }
             }
         }
 
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    // Assuming Kubernetes is set up, you can use kubectl to deploy the Docker image
-                    sh '''
-                        kubectl set image deployment/indore-finance-deployment indore-finance-service
-                    '''
-                }
+                // Deploy to Kubernetes logic goes here
             }
-        }
-    }
-
-    post {
-        always {
-            cleanWs() // Clean workspace after job completes
         }
     }
 }
