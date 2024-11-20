@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t indore-finance-service .'
+                    sh 'docker build -t indore-finance-service:latest .'
                 }
             }
         }
@@ -22,7 +22,7 @@ pipeline {
                     // Use hardcoded Docker credentials for login and push
                     sh """
                         echo vinay2503 | docker login -u vinaysunhare123@gmail.com --password-stdin
-                        docker push indore-finance-service
+                        docker push indore-finance-service:latest
                     """
                 }
             }
