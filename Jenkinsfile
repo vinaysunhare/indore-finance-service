@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    
-    environment {
-        DOCKER_CREDENTIALS = credentials('docker-hub-credentials') // Use your Jenkins credentials ID here
-    }
 
     stages {
         stage('Checkout Code') {
@@ -23,9 +19,9 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
-                    // Use Jenkins environment variables for Docker Hub credentials
+                    // Use hardcoded Docker credentials for login and push
                     sh """
-                        echo $vinay2503 | docker login -u $vinaysunhare123@gmail.com --password-stdin
+                        echo vinay2503 | docker login -u vinaysunhare123@gmail.com --password-stdin
                         docker push indore-finance-service
                     """
                 }
