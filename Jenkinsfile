@@ -21,7 +21,7 @@ pipeline {
                 script {
                     // Use hardcoded Docker credentials for login and push
                     sh """
-                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
+                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --p-stdin
                         docker push indore-finance-service:latest
                     """
                 }
