@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: indore-finance-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: indore-finance-service
+  template:
+    metadata:
+      labels:
+        app: indore-finance-service
+    spec:
+      containers:
+      - name: indore-finance-service
+        image: vinaysunhare/indore-finance-service:latest
+        ports:
+        - containerPort: 5000
