@@ -1,36 +1,39 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout Code') {
+        stage('Clone Repository') {
             steps {
-                git 'https://github.com/vinaysunhare/indore-finance-service.git'
+                git branch: 'main', url: 'https://github.com/vinaysunhare/indore-finance-service.git'
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Build with Maven') {
             steps {
-                script {
-                    sh 'docker build -t indore-finance-service:latest .'
-                }
+                sh 'mvn clean package'
             }
         }
-
-        stage('Push Docker Image to Docker Hub') {
+        stage('Docker Build and Push') {
             steps {
-                script {
-                    // Use hardcoded Docker credentials for login and push
-                    sh """
-                        echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --p-stdin
-                        docker push indore-finance-service:latest
-                    """
-                }
+                sh '''
+                IMAGE_NAME=indore-finance-service
+                TAG=latest
+                DOCKER_REGISTRY=your-docker-registry-url
+
+                docker build -t $DOCKER_REGISTRY/$IMAGE_NAME:$TAG .
+                docker push $DOCKER_REGISTRY/$IMAGE_NAME:$TAG
+                '''
             }
         }
-
         stage('Deploy to Kubernetes') {
             steps {
-                // Deploy to Kubernetes logic goes here
+                sh '''
+                IMAGE_NAME=indore-finance-service
+                TAG=latest
+                DOCKER_REGISTRY=your-docker-registry-url
+                KUBE_NAMESPACE=default
+
+                kubectl set image deployment/indore-finance-service indore-finance-service=$DOCKER_REGISTRY/$IMAGE_NAME:$TAG -n $KUBE_NAMESPACE
+                kubectl rollout status deployment/indore-finance-service -n $KUBE_NAMESPACE
+                '''
             }
         }
     }
