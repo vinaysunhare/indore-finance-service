@@ -14,7 +14,7 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 sh '''
-                IMAGE_NAME=indore-finance-service
+                IMAGE_NAME=indore-finance-service:latest
                 TAG=latest
                 DOCKER_REGISTRY=your-docker-registry-url
 
