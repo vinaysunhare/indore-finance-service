@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: indore-finance-deployment
+  labels:
+    app: indore-finance-service
 spec:
   replicas: 1
   selector:
@@ -17,3 +19,11 @@ spec:
         image: vinaysunhare/indore-finance-service:latest
         ports:
         - containerPort: 5000
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
