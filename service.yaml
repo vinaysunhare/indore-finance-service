@@ -1,12 +1,20 @@
-apiVersion: v1
-kind: Service
+apiVersion: apps/v1
+kind: Deployment
 metadata:
   name: indore-finance-service
 spec:
+  replicas: 1
   selector:
-    app: indore-finance-service
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 5000
-  type: LoadBalancer
+    matchLabels:
+      app: indore-finance-service
+  template:
+    metadata:
+      labels:
+        app: indore-finance-service
+    spec:
+      containers:
+        - name: indore-finance-service
+          image: vinaysunhare/indore-finance-service:latest
+          imagePullPolicy: Never  # 🚨 Yeh bahut zaroori hai agar tu local image use kar raha
+          ports:
+            - containerPort: 5000
