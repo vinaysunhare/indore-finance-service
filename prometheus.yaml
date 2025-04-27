@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'indore-finance-service'
+    static_configs:
+      - targets: ['indore-finance-service.default.svc.cluster.local:5000']
+    basic_auth:
+      username: 'admin'
+      password: 'vinaysunhare'

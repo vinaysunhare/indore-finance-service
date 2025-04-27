@@ -13,8 +13,7 @@ spec:
         app: indore-finance-service
     spec:
       containers:
-        - name: indore-finance-service
-          image: vinaysunhare/indore-finance-service:latest
-          imagePullPolicy: Never  # 🚨 Yeh bahut zaroori hai agar tu local image use kar raha
-          ports:
-            - containerPort: 5000
+      - name: indore-finance-service
+        image: vinaysunhare/indore-finance-service:latest  # Docker Hub ki image
+        ports:
+        - containerPort: 5000
